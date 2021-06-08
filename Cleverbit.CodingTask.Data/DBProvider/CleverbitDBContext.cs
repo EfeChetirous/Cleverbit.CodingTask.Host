@@ -20,7 +20,6 @@ namespace Cleverbit.CodingTask.Data.DBProvider
             builder.Entity<User>().HasData(new User { Id= 2, Username = "User2", Password= "123456" });
             builder.Entity<User>().HasData(new User { Id= 3, Username = "User3", Password= "123456" });
             builder.Entity<User>().HasData(new User { Id= 4, Username = "User4", Password= "123456" });
-
             base.OnModelCreating(builder);
         }
         public override int SaveChanges()

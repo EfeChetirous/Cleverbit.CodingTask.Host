@@ -5,6 +5,7 @@ using Cleverbit.CodingTask.Utilities.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -46,7 +47,13 @@ namespace Cleverbit.CodingTask.Host
 
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IHashService, HashService>();            
+            services.AddScoped<IHashService, HashService>();
+            services.AddScoped<IMatchService, MatchService>();
+            
+            services.AddHealthChecks();
+            services.AddRazorPages();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,9 +78,17 @@ namespace Cleverbit.CodingTask.Host
             app.UseAuthentication();
             app.UseRouting();
             app.UseAuthorization();
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllers();
+            //});
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
 
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())

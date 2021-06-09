@@ -4,14 +4,16 @@ using Cleverbit.CodingTask.Data.DBProvider;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Cleverbit.CodingTask.Host.Migrations
 {
     [DbContext(typeof(CleverbitDBContext))]
-    partial class CleverbitDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210609003241_sqlchanges")]
+    partial class sqlchanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

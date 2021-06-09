@@ -2,7 +2,63 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row d-none" id="divUsername">
+    <label class="form-control" id="lblUsername">UserName</label>
+    <button id="btnRefresh" type="button" class="btn btn-primary mb-2">Refresh</button>
 </div>
+
+<br />
+<form class="form-inline" id="formLogin">
+    <div class="form-group mb-2">
+        <label for="staticUsername" class="sr-only">Username</label>
+        <input type="text" class="form-control" id="inpUserName" placeholder="User Name" />
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" class="form-control" id="inpPassword" placeholder="Password">
+    </div>
+    <button id="btnLogin" type="button" class="btn btn-primary mb-2">Login</button>
+
+</form>
+
+
+<br />
+<div class="text-center">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    First User
+                </th>
+                <th>
+                    Second User
+                </th>
+                <th>
+                    First User Point
+                </th>
+                <th>
+                    Second User Point
+                </th>
+                <th>
+                    Winner
+                </th>
+                <th>
+                    Match End Date
+                </th>
+            </tr>
+        </thead>
+        <tbody id="MatchTableRows">
+        </tbody>
+    </table>
+</div>
+
+<div class="row d-none" id="divPlay">
+    <form class="form-inline">
+        <button id="btnPlay" type="button" class="btn btn-primary mb-2">Play</button>
+        <div class="form-group mb-2">
+            <label id="lblRandomNumber" class="form-control"></label>
+        </div>
+    </form>
+</div>
+
+<script src="~/js/match.js" asp-append-version="true" defer></script>
